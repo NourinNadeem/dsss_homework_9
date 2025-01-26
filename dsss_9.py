@@ -10,7 +10,7 @@ model = AutoModelForCausalLM.from_pretrained(model_name)
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model = model.to(device)
 
-TOKEN = '7694753045:AAGz4dL0jkGCChqt-jFliOZKwOcR9ZZiKlg'  # Replace with your token
+TOKEN = '7694753045:AAGz4dL0jkGCChqt-jFliOZKwOcR9ZZiKlg'
 
 def generate_response(prompt):
     try:
@@ -22,11 +22,11 @@ def generate_response(prompt):
         inputs = tokenizer(structured_prompt, return_tensors="pt", truncation=True).to(device)
         outputs = model.generate(
             **inputs,
-            max_length=300,  # Set a maximum length for responses
-            do_sample=True,  # Enable sampling for creative outputs
-            temperature=0.7,  # Adjust for balanced randomness
-            top_k=50,  # Restrict output to top 50 words
-            top_p=0.9,  # Use nucleus sampling
+            max_length=300, 
+            do_sample=True, 
+            temperature=0.7, 
+            top_k=50, 
+            top_p=0.9, 
         )
         response = tokenizer.decode(outputs[0], skip_special_tokens=True).strip()
 
@@ -35,7 +35,7 @@ def generate_response(prompt):
 
     except Exception as e:
         response = "An error occurred while generating a response. Please try again later."
-        print(f"Error: {e}")  # Log error for debugging
+        print(f"Error: {e}") 
 
     return response
 
